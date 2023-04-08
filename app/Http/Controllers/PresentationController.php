@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\presentation;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 
 
@@ -44,11 +46,11 @@ class PresentationController extends Controller
         $request->validate([
             'presentation' => 'required',
         ]);
-        $presentation = Presentation::create($request->all());
-        $presentation->save();
-        return redirect('presentations');
-    }
 
+        $presentation = new Presentation($request->input());
+        $presentation->save();
+        return redirect(route('presentations'));
+    }
     /**
      * Display the specified resource.
      */
