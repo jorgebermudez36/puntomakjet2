@@ -50,36 +50,5 @@ const form = useForm({
                 </form>
             </div>
         </div>
-        <!-- <FormSection title="Create" description="Create a new presentation">
-            <template #form>
-                <div class="">
-                    
-                    <TextInput
-                        class="mt-1 w-full"
-                        id="presentation"
-                        type="text"
-                        v-model="form.presentation"
-                    />
-                    <InputError
-                        message="This field is required"
-                        :errors="form.errors.presentation"
-                    />
-                </div>
-            </template>
-            <template #actions>
-                <Link
-                    class="my-1.5 text-right inline-block w-full sm:w-auto px-3 py-2 bg-gray-600 text-sm font-medium text-white rounded-lg shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-                    :href="route('presentations.index')"
-                >
-                    Cancel
-                </Link>
-                <PrimaryButton
-                    class="my-1.5 text-right inline-block w-full sm:w-auto px-3 py-2 bg-green-600 text-sm font-medium text-white rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                    @click="form.post(route('presentations.store'))"
-                >
-                    Create
-                </PrimaryButton>
-            </template>
-        </FormSection> -->
     </AppLayout>
 </template>

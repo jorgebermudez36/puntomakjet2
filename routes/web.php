@@ -41,6 +41,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::resource('presentations', PresentationController::class);
-    Route::resource('products', ProductController::class);
+    Route::resource('/presentations', PresentationController::class);
+    Route::resource('/products', ProductController::class);
 });
