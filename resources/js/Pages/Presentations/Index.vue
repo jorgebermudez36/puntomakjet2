@@ -1,9 +1,6 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import InputError from "@/Components/InputError.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { useForm, Head, Link } from "@inertiajs/vue3";
-import PaginationForm from "@/Components/PaginationForm.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import Swal from "sweetalert2";
 
@@ -37,14 +34,8 @@ const deletePresentation = (id, presentation) => {
 </script>
 
 <template>
-    <AppLayout title="Presentation">
-        <template #header>
-            <h2
-                class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"
-            >
-                Presentation
-            </h2>
-        </template>
+    <Head title="Presentation" />
+    <AppLayout>
         <div class="py-8">
             <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
                 <div
@@ -72,7 +63,7 @@ const deletePresentation = (id, presentation) => {
                         class="border-double border-2 rounded border-sky-500 table-fixed w-full"
                     >
                         <thead
-                            class="border border-gray-400 w-auto self-auto bg-gray-50 text-center"
+                            class="border aspect-auto border-gray-400 w-auto self-auto bg-gray-50 text-center"
                         >
                             <tr>
                                 <th

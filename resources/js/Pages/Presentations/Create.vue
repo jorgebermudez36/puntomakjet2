@@ -1,9 +1,9 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
-import TextInput from "@/Components/TextInput.vue";
+import InputError from "@/Components/InputError.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 
 const form = useForm({
@@ -13,46 +13,73 @@ const form = useForm({
 
 <template>
     <AppLayout title="Create">
-        <template #header>
-            <h2
-                class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"
+        <div class="md:container md:mx-auto px-6 py-6">
+            <div
+                class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg"
             >
-                Create
-            </h2>
-        </template>
-        <div class="py-8">
-            <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-                <div
-                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg py-2"
+                <form
+                    @submit.prevent="
+                        form.post(route('presentations.store'), {
+                            onSuccess: () => form.reset(),
+                        })
+                    "
                 >
-                    <h2
-                        class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb-4"
-                    >
-                        Presentation
-                    </h2>
-                    <form
-                        @sbumit.prevent="
-                            ($event) => form.post(route('presentations.store'))
-                        "
-                    >
-                        <InputLabel name="presentation" label="Presentation" />
-                        <TextInput
-                            type="text"
-                            id="presentation"
-                            v-model="form.presentation"
-                            class="w-full mt-1 text-lg text-gray-900 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-900 focus:ring-opacity-50 mb-4"
-                        />
-                        <InputError
-                            v-if="form.errors.presentation"
-                            :message="form.errors.presentation"
-                        />
+                    <InputLabel
+                        for="presentation"
+                        class="font-sans text-lg font-medium text-gray-900 mx-3"
+                        value="Presentation"
+                    />
+                    <br />
+                    <textarea
+                        v-model="form.presentation"
+                        placeholder="Type your presentation here..."
+                        class="w-11/12 mx-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                    ></textarea>
+                    <InputError
+                        class="mt-2 mx-3"
+                        message="This field is required"
+                        :errors="form.errors.presentation"
+                    />
 
-                        <PrimaryButton
-                            ><i class="fa-solid fa-save"></i>Save</PrimaryButton
-                        >
-                    </form>
-                </div>
+                    <PrimaryButton class="mx-3 my-4">Save</PrimaryButton>
+                    <SecondaryButton class="mx-3 my-4">
+                        <Link :href="route('presentations.index')"
+                            >Cancel</Link
+                        ></SecondaryButton
+                    >
+                </form>
             </div>
         </div>
+        <!-- <FormSection title="Create" description="Create a new presentation">
+            <template #form>
+                <div class="">
+                    
+                    <TextInput
+                        class="mt-1 w-full"
+                        id="presentation"
+                        type="text"
+                        v-model="form.presentation"
+                    />
+                    <InputError
+                        message="This field is required"
+                        :errors="form.errors.presentation"
+                    />
+                </div>
+            </template>
+            <template #actions>
+                <Link
+                    class="my-1.5 text-right inline-block w-full sm:w-auto px-3 py-2 bg-gray-600 text-sm font-medium text-white rounded-lg shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                    :href="route('presentations.index')"
+                >
+                    Cancel
+                </Link>
+                <PrimaryButton
+                    class="my-1.5 text-right inline-block w-full sm:w-auto px-3 py-2 bg-green-600 text-sm font-medium text-white rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                    @click="form.post(route('presentations.store'))"
+                >
+                    Create
+                </PrimaryButton>
+            </template>
+        </FormSection> -->
     </AppLayout>
 </template>

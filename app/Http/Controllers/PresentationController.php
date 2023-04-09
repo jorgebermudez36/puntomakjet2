@@ -49,7 +49,7 @@ class PresentationController extends Controller
 
         $presentation = new Presentation($request->input());
         $presentation->save();
-        return redirect(route('presentations'));
+        return redirect('presentations');
     }
     /**
      * Display the specified resource.
