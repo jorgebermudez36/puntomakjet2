@@ -26,8 +26,8 @@ Route::get('/', function () {
     ]);
 });
 
-/* Route::get('/presentation', [App\Http\Controllers\PresentationController::class, 'index'])->name('presentation.index');
-Route::get('/presentation/create', [App\Http\Controllers\PresentationController::class, 'create'])->name('presentation.create');
+/* Route::get('api/presentation', [App\Http\Controllers\PresentationController::class, 'index'])->name('presentation.index');
+/*Route::get('/presentation/create', [App\Http\Controllers\PresentationController::class, 'create'])->name('presentation.create');
 Route::post('/presentation', [App\Http\Controllers\PresentationController::class, 'store'])->name('presentation.store');
 Route::get('/presentation/{id}/edit', [App\Http\Controllers\PresentationController::class, 'edit'])->name('presentation.edit');
 Route::put('/presentation/{id}', [App\Http\Controllers\PresentationController::class, 'update'])->name('presentation.update');

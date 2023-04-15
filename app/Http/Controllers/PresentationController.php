@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\presentation;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Inertia\Response;
-
-
 
 class PresentationController extends Controller
 {
@@ -28,7 +24,6 @@ class PresentationController extends Controller
             ['presentations' => $presentations]
         );
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -36,7 +31,6 @@ class PresentationController extends Controller
     {
         return Inertia::render('Presentations/Create');
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -58,7 +52,6 @@ class PresentationController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      */

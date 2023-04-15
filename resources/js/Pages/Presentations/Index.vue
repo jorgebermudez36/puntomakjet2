@@ -1,8 +1,8 @@
 <script setup>
+import Swal from "sweetalert2";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import { useForm, Head, Link } from "@inertiajs/vue3";
 import DangerButton from "@/Components/DangerButton.vue";
-import Swal from "sweetalert2";
 
 const props = defineProps({
     presentations: { type: Object },
@@ -14,8 +14,17 @@ const form = useForm({
 
 const deletePresentation = (id, presentation) => {
     const alerta = Swal.mixin({
-        buttonsStyling: true,
+        alerta: true,
+        position: "top-end",
+        showConfirmButton: true,
+        timer: 9000,
+        timerProgressBar: true,
+        didOpen: (alerta) => {
+            alerta.addEventListener("mouseenter", Swal.stopTimer);
+            alerta.addEventListener("mouseleave", Swal.resumeTimer);
+        },
     });
+
     alerta
         .fire({
             title: "Are you sure you want to delete " + presentation + "?",
