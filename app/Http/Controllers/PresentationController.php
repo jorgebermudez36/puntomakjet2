@@ -12,9 +12,7 @@ class PresentationController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $presentations = Presentation::all();

@@ -3,79 +3,66 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
-use App\Http\Requests\StoreproductRequest;
-use App\Http\Requests\UpdateproductRequest;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $product = Product::select('reference', 'product')->paginate(10);
+        $products = Product::paginate(15);
         return Inertia::render(
-            'Product/Index',
-            ['product' => $product]
+            'Products/Index',
+            [
+                'products' => $products->items(),
+                'pagination' => $products->links()->pagination
+            ]
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return Inertia::render('Products/Index');
+        return Inertia::render('Products/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreproductRequest $request)
+    public function store(Request $request)
     {
         $request->validate([
             'product' => 'required',
         ]);
+
         $product = new Product($request->input());
         $product->save();
-        return redirect('product');
+        return redirect('products');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(product $product)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(product $product)
     {
-        return Inertia::render('Product/Edit', ['product' => $product]);
+        return Inertia::render('Products/Edit', ['product' => $product]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateproductRequest $request, product $product)
+    public function update(Request $request, product $product)
     {
         $request->validate([
             'product' => 'required',
         ]);
         $product->update($request->all());
-        return redirect('product');
+        return redirect('products');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(product $product)
     {
         $product->delete();
-        return redirect('product');
+        return redirect('products');
+    }
+
+    public function show(product $product)
+    {
+        //
     }
 }
