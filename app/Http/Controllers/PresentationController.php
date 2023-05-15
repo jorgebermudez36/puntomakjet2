@@ -15,11 +15,11 @@ class PresentationController extends Controller
 
     public function index()
     {
-        $presentations = Presentation::all();
-        /* return $presentation; */
+        $presentations = Presentation::paginate();
+
         return Inertia::render(
             'Presentations/Index',
-            ['presentations' => $presentations]
+            compact('presentations')
         );
     }
     /**

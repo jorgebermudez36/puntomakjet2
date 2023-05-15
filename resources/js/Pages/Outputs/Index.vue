@@ -1,22 +1,18 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { useForm, Head, Link } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
 import DangerButton from "@/Components/DangerButton.vue";
 import Paginate from "@/Components/Paginate.vue";
 
 const props = defineProps({
-    presentations: { type: Object },
+    outputs: { type: Object },
 });
 
-const form = useForm({
-    presentation: "",
-});
-
-const deletePresentation = (id, presentation) => {
+const deleteoutput = (id, outputs) => {
     const alerta = Swal.mixin({
         alerta: true,
-        position: "",
+        position: " ",
         showConfirmButton: true,
         timer: 9000,
         timerProgressBar: true,
@@ -28,7 +24,7 @@ const deletePresentation = (id, presentation) => {
 
     alerta
         .fire({
-            title: "Are you sure you want to delete " + presentation + "?",
+            title: "Are you sure you want to delete " + outputs + "?",
             icon: "question",
             showCancelButton: true,
             confirmButtonText:
@@ -37,23 +33,23 @@ const deletePresentation = (id, presentation) => {
         })
         .then((result) => {
             if (result.isConfirmed) {
-                form.delete(route("presentations.destroy", id));
+                form.delete(route("outputs.destroy", id));
             }
         });
 };
 </script>
 
 <template>
-    <Head title="Presentation" />
-    <AppLayout>
+    <Head title="Input" />
+    <App-Layout>
         <div class="py-8">
-            <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div
                     class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg"
                 >
                     <Link
                         class="my-1.5 text-right inline-block w-full sm:w-auto px-3 py-2 bg-green-600 text-sm font-medium text-white rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                        :href="route('presentations.create')"
+                        :href="route('outputs.create')"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -69,6 +65,7 @@ const deletePresentation = (id, presentation) => {
                         </svg>
                         Create
                     </Link>
+
                     <table
                         class="border-double border-2 rounded border-sky-500 table-fixed w-full"
                     >
@@ -78,53 +75,94 @@ const deletePresentation = (id, presentation) => {
                             <tr>
                                 <th
                                     scope="col"
-                                    class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
+                                    class="w-1/5 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
                                 >
-                                    Id
+                                    id
                                 </th>
                                 <th
                                     scope="col"
-                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
+                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
+                                >
+                                    Reference
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
+                                >
+                                    Products
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
                                 >
                                     Presentation
                                 </th>
                                 <th
-                                    class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
+                                    scope="col"
+                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
+                                >
+                                    Quantity
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
+                                >
+                                    Total
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
                                 >
                                     Edit
                                 </th>
                                 <th
-                                    class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
+                                    scope="col"
+                                    class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
                                 >
                                     Delete
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-slate-500">
-                            <tr
-                                v-for="presentation in presentations.data"
-                                :key="presentation.id"
-                            >
+                        <tbody class="bg-white divide-y divide-slate-700">
+                            <tr v-for="output in outputs.data" :key="output.id">
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ presentation.id }}
+                                    {{ output.id }}
                                 </td>
                                 <td
-                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500"
+                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ presentation.presentation }}
+                                    {{ output.product.reference }}
                                 </td>
+                                <td
+                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
+                                >
+                                    {{ output.product.product }}
+                                </td>
+                                <td
+                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
+                                >
+                                    {{ output.presentation.presentation }}
+                                </td>
+                                <td
+                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
+                                >
+                                    {{ output.quantity }}
+                                </td>
+                                <td
+                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
+                                >
+                                    {{ output.total_quantity }}
+                                </td>
+
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
                                     <button class="text-center py-1">
                                         <Link
                                             :href="
-                                                route(
-                                                    'presentations.edit',
-                                                    presentation.id
-                                                )
+                                                route('outputs.edit', output.id)
                                             "
                                             ><svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -144,11 +182,7 @@ const deletePresentation = (id, presentation) => {
                                 >
                                     <DangerButton
                                         @click="
-                                            ($event) =>
-                                                deletePresentation(
-                                                    presentation.id,
-                                                    presentation.presentation
-                                                )
+                                            ($event) => deleteoutput(output.id)
                                         "
                                     >
                                         <svg
@@ -168,27 +202,16 @@ const deletePresentation = (id, presentation) => {
                             </tr>
                         </tbody>
                     </table>
-                    <Paginate :pagination="presentations" />
+                    <Paginate :pagination="outputs" />
                 </div>
             </div>
         </div>
-    </AppLayout>
+    </App-Layout>
 </template>
 
 <style>
 .text-xl {
-    font-size: 2rem;
-    color: antiquewhite;
-    align-items: center;
-    max-width: 100%;
-}
-
-.table-auto {
-    border-collapse: collapse;
-    width: 100%;
-    color: blanchedalmond;
-    border-color: antiquewhite;
-    border-width: 1px;
-    margin-top: 20px;
+    font-size: 1.5rem;
+    color: azure;
 }
 </style>

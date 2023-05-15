@@ -3,38 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\input;
-use App\Http\Requests\StoreinputRequest;
-use App\Http\Requests\UpdateinputRequest;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class InputController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        //
+        $inputs = Input::with(['product', 'presentation'])->paginate();
+        return Inertia::render('Inputs/Index', compact('inputs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return Inertia::render('Inputs/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreinputRequest $request)
+    public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(input $input)
     {
         //
@@ -45,13 +39,13 @@ class InputController extends Controller
      */
     public function edit(input $input)
     {
-        //
+        return Inertia::render('Inputs/Edit', ['inputs' => $input]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateinputRequest $request, input $input)
+    public function update(Request $request, input $input)
     {
         //
     }
@@ -61,6 +55,7 @@ class InputController extends Controller
      */
     public function destroy(input $input)
     {
-        //
+        $input->delete();
+        return redirect('inputs');
     }
 }

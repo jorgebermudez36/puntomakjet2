@@ -15,13 +15,11 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::paginate(15);
+        /* return $products = Product::paginate(); */ // This is the only line that changes 
+        $products = Product::paginate();
         return Inertia::render(
             'Products/Index',
-            [
-                'products' => $products->items(),
-                'pagination' => $products->links()->pagination
-            ]
+            compact('products')
         );
     }
 

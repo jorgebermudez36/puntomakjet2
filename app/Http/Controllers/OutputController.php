@@ -3,31 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\output;
-use App\Http\Requests\StoreoutputRequest;
-use App\Http\Requests\UpdateoutputRequest;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class OutputController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $outputs = Output::with(['product', 'presentation'])->paginate();
+        return Inertia::render('Outputs/Index', compact('outputs'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return Inertia::render('Outputs/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreoutputRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -45,13 +49,13 @@ class OutputController extends Controller
      */
     public function edit(output $output)
     {
-        //
+        return Inertia::render('Outputs/Edit', ['outputs' => $output]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateoutputRequest $request, output $output)
+    public function update(Request $request, output $output)
     {
         //
     }
@@ -61,6 +65,7 @@ class OutputController extends Controller
      */
     public function destroy(output $output)
     {
-        //
+        $output->delete();
+        return redirect('outputs');
     }
 }

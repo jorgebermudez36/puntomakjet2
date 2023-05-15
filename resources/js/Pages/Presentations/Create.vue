@@ -13,7 +13,7 @@ const form = useForm({
 
 <template>
     <AppLayout title="Create">
-        <div class="md:container md:mx-auto px-6 py-6">
+        <div class="py-8 max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div
                 class="bg-white dark:bg-gray-600 overflow-hidden shadow-xl sm:rounded-lg"
             >

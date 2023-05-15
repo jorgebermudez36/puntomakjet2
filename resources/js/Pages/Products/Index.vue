@@ -3,21 +3,20 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import { useForm, Head, Link } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
 import DangerButton from "@/Components/DangerButton.vue";
-import PagForm from "@/Components/PagForm.vue";
+import Paginate from "@/Components/Paginate.vue";
 
 const props = defineProps({
     products: { type: Object },
 });
 
 const form = useForm({
-    product: " ",
-    pagination: "",
+    products: "",
 });
 
 const deleteproduct = (id, product) => {
     const alerta = Swal.mixin({
         alerta: true,
-        position: "top-end",
+        position: "",
         showConfirmButton: true,
         timer: 9000,
         timerProgressBar: true,
@@ -112,13 +111,13 @@ const deleteproduct = (id, product) => {
                         </thead>
                         <tbody class="bg-white divide-y divide-slate-700">
                             <tr
-                                v-for="(product, i) in products"
+                                v-for="product in products.data"
                                 :key="product.id"
                             >
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ i + 1 }}
+                                    {{ product.id }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
@@ -181,7 +180,7 @@ const deleteproduct = (id, product) => {
                             </tr>
                         </tbody>
                     </table>
-                    <PagForm :pagination="products" />
+                    <Paginate :pagination="products" />
                 </div>
             </div>
         </div>
