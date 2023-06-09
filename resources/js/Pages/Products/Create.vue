@@ -7,8 +7,8 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm, Link, Head } from "@inertiajs/vue3";
 
 const form = useForm({
-    reference: "",
-    product: "",
+    reference: " ",
+    product: " ",
 });
 </script>
 
@@ -27,30 +27,42 @@ const form = useForm({
                             })
                         "
                     >
-                        <InputLabel
-                            for="reference"
-                            class="font-sans text-lg font-medium text-gray-900 mx-3"
-                            value="Reference"
-                        />
-                        <TextInput
-                            v-model="form.reference"
-                            placeholder="Type the reference here..."
-                            class="w-11/12 mx-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                        />
-                        <InputLabel
-                            for="product"
-                            class="font-sans text-lg font-medium text-gray-900 mx-3"
-                            value="Product"
-                        />
-                        <TextInput
-                            v-model="form.product"
-                            placeholder="Type your product here..."
-                            class="w-11/12 mx-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                        />
-                        <PrimaryButton class="mx-3 my-4">Save</PrimaryButton>
-                        <SecondaryButton class="mx-3 my-4">
-                            <Link :href="route('products.index')">Cancel</Link>
-                        </SecondaryButton>
+                        <div class="mt-2 mx-3">
+                            <InputLabel
+                                for="reference"
+                                class="font-sans text-lg font-medium text-gray-900 mx-3"
+                                value="Reference"
+                            />
+                            <TextInput
+                                v-model="form.reference"
+                                placeholder="Type the reference here..."
+                                class="w-11/12 mx-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            />
+                        </div>
+                        <div class="mt-2 mx-3">
+                            <InputLabel
+                                for="product"
+                                class="font-sans text-lg font-medium text-gray-900 mx-3"
+                                value="Product"
+                            />
+                        </div>
+                        <div class="mt-2 mx-3">
+                            <TextInput
+                                v-model="form.product"
+                                placeholder="Type your product here..."
+                                class="w-11/12 mx-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                            />
+                        </div>
+                        <div class="mt-1 mx-3">
+                            <PrimaryButton class="mx-3 my-4"
+                                >Save</PrimaryButton
+                            >
+                            <SecondaryButton class="mx-3 my-4">
+                                <Link :href="route('products.index')"
+                                    >Cancel</Link
+                                >
+                            </SecondaryButton>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('inputs', function (Blueprint $table) {
             $table->id();
+            $table->integer('quantity')->default(0);
+            $table->timestamps();
+
             $table->foreignId('reference_id')->constrained('products');
             $table->foreignId('product_id')->constrained('products');
             $table->foreignId('presentation_id')->constrained('presentations');
-            $table->integer('quantity')->default(0);
-            $table->integer('total_quantity')->default(0);
-            $table->timestamps();
         });
     }
 

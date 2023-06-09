@@ -23,8 +23,6 @@ class InputFactory extends Factory
             'product_id' => product::all()->random()->id,
             'presentation_id' => presentation::all()->random()->id,
             'quantity' => $this->faker->numberBetween(1, 100),
-            'total_quantity' => $this->faker->numberBetween(1, 100),
-
         ];
     }
 }

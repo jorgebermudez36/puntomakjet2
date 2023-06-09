@@ -101,17 +101,12 @@ const deleteinput = (id, inputs) => {
                                 >
                                     Presentation
                                 </th>
+
                                 <th
                                     scope="col"
                                     class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
                                 >
                                     Quantity
-                                </th>
-                                <th
-                                    scope="col"
-                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
-                                >
-                                    Total
                                 </th>
                                 <th
                                     scope="col"
@@ -153,11 +148,6 @@ const deleteinput = (id, inputs) => {
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
                                     {{ input.quantity }}
-                                </td>
-                                <td
-                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
-                                >
-                                    {{ input.total_quantity }}
                                 </td>
 
                                 <td

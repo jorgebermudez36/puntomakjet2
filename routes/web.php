@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\InputController;
-use App\Http\Controllers\OutputController;
+use App\Http\Controllers\SupplyController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -43,8 +43,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::resource('/presentations', PresentationController::class);
-    Route::resource('/products', ProductController::class);
-    Route::resource('/inputs', InputController::class);
-    Route::resource('/outputs', OutputController::class);
 });
+
+Route::resource('/presentations', PresentationController::class);
+Route::resource('/products', ProductController::class);
+Route::resource('/inputs', InputController::class);
+Route::resource('/stocks', SupplyController::class);

@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\supply;
-use App\Http\Requests\StoresupplyRequest;
-use App\Http\Requests\UpdatesupplyRequest;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class SupplyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $supplies = Supply::with(['product', 'presentation', 'input'])->paginate();
+        return Inertia::render('Stocks/Index', compact('supplies'));
     }
 
     /**
@@ -27,7 +32,7 @@ class SupplyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoresupplyRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -51,7 +56,7 @@ class SupplyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatesupplyRequest $request, supply $supply)
+    public function update(Request $request, supply $supply)
     {
         //
     }

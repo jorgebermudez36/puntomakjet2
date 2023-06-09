@@ -11,11 +11,11 @@ class input extends Model
     use HasFactory;
 
     protected $fillable = [
-        'reference_id',
-        'product_id',
-        'presentation_id',
+        "reference_id",
+        "product_id",
+        "presentation_id",
         'quantity',
-        'total_quantity',
+
     ];
 
     public function product()

@@ -1,15 +1,19 @@
-<script setup>
+<!-- <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { useForm, Head, Link } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
 import DangerButton from "@/Components/DangerButton.vue";
 import Paginate from "@/Components/Paginate.vue";
 
 const props = defineProps({
-    outputs: { type: Object },
+    inputs: { type: Object },
 });
 
-const deleteoutput = (id, outputs) => {
+const form = useForm({
+    input: "",
+});
+
+const deleteinput = (id, inputs) => {
     const alerta = Swal.mixin({
         alerta: true,
         position: " ",
@@ -24,7 +28,7 @@ const deleteoutput = (id, outputs) => {
 
     alerta
         .fire({
-            title: "Are you sure you want to delete " + outputs + "?",
+            title: "Are you sure you want to delete " + inputs + "?",
             icon: "question",
             showCancelButton: true,
             confirmButtonText:
@@ -33,7 +37,7 @@ const deleteoutput = (id, outputs) => {
         })
         .then((result) => {
             if (result.isConfirmed) {
-                form.delete(route("outputs.destroy", id));
+                form.delete(route("inputs.destroy", id));
             }
         });
 };
@@ -49,7 +53,7 @@ const deleteoutput = (id, outputs) => {
                 >
                     <Link
                         class="my-1.5 text-right inline-block w-full sm:w-auto px-3 py-2 bg-green-600 text-sm font-medium text-white rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                        :href="route('outputs.create')"
+                        :href="route('inputs.create')"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -97,12 +101,7 @@ const deleteoutput = (id, outputs) => {
                                 >
                                     Presentation
                                 </th>
-                                <th
-                                    scope="col"
-                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
-                                >
-                                    Quantity
-                                </th>
+
                                 <th
                                     scope="col"
                                     class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
@@ -124,36 +123,31 @@ const deleteoutput = (id, outputs) => {
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-slate-700">
-                            <tr v-for="output in outputs.data" :key="output.id">
+                            <tr v-for="input in inputs.data" :key="input.id">
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ output.id }}
+                                    {{ input.id }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ output.product.reference }}
+                                    {{ input.product.reference }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ output.product.product }}
+                                    {{ input.product.product }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ output.presentation.presentation }}
+                                    {{ input.presentation.presentation }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ output.quantity }}
-                                </td>
-                                <td
-                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
-                                >
-                                    {{ output.total_quantity }}
+                                    {{ input.total_quantity }}
                                 </td>
 
                                 <td
@@ -162,7 +156,7 @@ const deleteoutput = (id, outputs) => {
                                     <button class="text-center py-1">
                                         <Link
                                             :href="
-                                                route('outputs.edit', output.id)
+                                                route('inputs.edit', input.id)
                                             "
                                             ><svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +176,7 @@ const deleteoutput = (id, outputs) => {
                                 >
                                     <DangerButton
                                         @click="
-                                            ($event) => deleteoutput(output.id)
+                                            ($event) => deleteinput(input.id)
                                         "
                                     >
                                         <svg
@@ -202,7 +196,7 @@ const deleteoutput = (id, outputs) => {
                             </tr>
                         </tbody>
                     </table>
-                    <Paginate :pagination="outputs" />
+                    <Paginate :pagination="inputs" />
                 </div>
             </div>
         </div>
@@ -214,4 +208,6 @@ const deleteoutput = (id, outputs) => {
     font-size: 1.5rem;
     color: azure;
 }
-</style>
+</style> -->
+
+<template>Stocks Here</template>

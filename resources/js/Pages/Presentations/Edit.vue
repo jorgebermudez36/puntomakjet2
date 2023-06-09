@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import InputLabel from "@/Components/InputLabel.vue";
+import TextInput from "@/Components/TextInput.vue";
 import InputError from "@/Components/InputError.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
@@ -37,10 +38,10 @@ const form = useForm({
                         value="Presentation"
                     />
                     <br />
-                    <textarea
+                    <TextInput
                         v-model="form.presentation"
                         class="w-11/12 mx-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                    ></textarea>
+                    ></TextInput>
                     <InputError
                         class="mt-2 mx-3"
                         message="This field is required"

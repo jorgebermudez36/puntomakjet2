@@ -81,10 +81,10 @@ const logout = () => {
                                     Input
                                 </NavLink>
                                 <NavLink
-                                    :href="route('outputs.index')"
-                                    :active="route().current('outputs.*')"
+                                    :href="route('stocks.index')"
+                                    :active="route().current('stocks.*')"
                                 >
-                                    Output
+                                    Stock
                                 </NavLink>
                             </div>
                         </div>
@@ -399,10 +399,10 @@ const logout = () => {
                             Input
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
-                            :href="route('outputs.index')"
-                            :active="route().current('outputs.*')"
+                            :href="route('stocks.index')"
+                            :active="route().current('stocks.*')"
                         >
-                            Output
+                            Stock
                         </ResponsiveNavLink>
                     </div>
 

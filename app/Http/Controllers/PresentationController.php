@@ -36,7 +36,7 @@ class PresentationController extends Controller
 
     {
         $request->validate([
-            'presentation' => 'required',
+            'presentation' => 'required|min:2|max:10',
         ]);
 
         $presentation = new Presentation($request->input());

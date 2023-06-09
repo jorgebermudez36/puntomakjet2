@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('reference_id')->constrained('products');
             $table->foreignId('product_id')->constrained('products');
             $table->foreignId('presentation_id')->constrained('presentations');
+            $table->foreignId('quantity_id')->constrained('inputs');
             $table->integer('stock');
             $table->timestamps();
         });

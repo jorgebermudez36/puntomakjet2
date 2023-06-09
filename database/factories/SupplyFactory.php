@@ -3,6 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\product;
+use App\Models\presentation;
+use App\Models\input;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\supply>
@@ -17,7 +20,11 @@ class SupplyFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'reference_id' => product::all()->random()->id,
+            'product_id' => product::all()->random()->id,
+            'presentation_id' => presentation::all()->random()->id,
+            'quantity_id' => input::all()->random()->id,
+            'stock' => $this->faker->numberBetween(1, 100),
         ];
     }
 }

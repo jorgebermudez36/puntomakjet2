@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\input;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\DB;
+
 
 class InputController extends Controller
 {
@@ -21,12 +23,29 @@ class InputController extends Controller
 
     public function create()
     {
-        return Inertia::render('Inputs/Create');
+        $presentations = \App\Models\Presentation::all();
+        $products = \App\Models\Product::all();
+        return Inertia::render('Inputs/Create', compact('presentations', 'products'));
     }
 
     public function store(Request $request)
     {
-        //
+
+
+        $request->validate([
+            'reference_id' => 'required',
+            'product_id' => 'required',
+            'presentation_id' => 'required',
+            'quantity' => 'required|Integer',
+
+        ]);
+
+        /* $validatedData['total_quantity'] = DB::raw("total_quantity + {ValidatedData['quantity']}"); */
+
+        $inputs = new Input($request->input());
+        $inputs->save();
+
+        return redirect('inputs');
     }
 
     public function show(input $input)
@@ -57,5 +76,11 @@ class InputController extends Controller
     {
         $input->delete();
         return redirect('inputs');
+    }
+
+    public function sum()
+    {
+        $total_quantity = Input::sum('cantidad');
+        return Inertia::render('Inputs/Sum', compact('total_quantity'));
     }
 }
