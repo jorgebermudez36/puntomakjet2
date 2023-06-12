@@ -7,6 +7,7 @@ import SelectInput from "@/Components/SelectInput.vue";
 import SelectProduct from "@/Components/SelectProduct.vue";
 import SelectPres from "@/Components/SelectPres.vue";
 import TextInput from "@/Components/TextInput.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const form = useForm({
     reference_id: "",
@@ -23,7 +24,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <Head title="Input Create" />
+    <Head title="Transactions" />
     <AppLayout>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -33,7 +34,7 @@ const props = defineProps({
                     <div class="border-b border-gray-900/10 pb-12">
                         <InputLabel
                             for="entry_id"
-                            value="Entreada de Producto"
+                            value="Movimiento de Productos"
                             class="font-serif italic text-lg font-medium tracking-wide text-gray-100 mb-4"
                         />
                         <div class="container">
@@ -115,7 +116,6 @@ const props = defineProps({
                         </div>
 
                         <PrimaryButton
-                            class="mx-3 my-4 me-2 inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
                             @click="
                                 form.post(route('inputs.store'), {
                                     onSuccess: () => form.reset(),
@@ -123,7 +123,7 @@ const props = defineProps({
                             "
                             >Save</PrimaryButton
                         >
-                        <SecondaryButton class="mx-3 my-4 text-2xl font-black">
+                        <SecondaryButton>
                             <Link :href="route('inputs.index')">Cancel</Link>
                         </SecondaryButton>
                     </div>

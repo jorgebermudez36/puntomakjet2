@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\input;
+use App\Models\supply;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
@@ -30,9 +31,7 @@ class InputController extends Controller
 
     public function store(Request $request)
     {
-
-
-        $request->validate([
+        $validatedData = $request->validate([
             'reference_id' => 'required',
             'product_id' => 'required',
             'presentation_id' => 'required',
@@ -40,11 +39,20 @@ class InputController extends Controller
 
         ]);
 
-        /* $validatedData['total_quantity'] = DB::raw("total_quantity + {ValidatedData['quantity']}"); */
+        $input = Input::create($validatedData);
 
-        $inputs = new Input($request->input());
-        $inputs->save();
+        // Retrieve the corresponding supply record based on reference_id, product_id, and presentation_id
+        $supply = Supply::where(['reference_id' => $input->reference_id, 'product_id' => $input->product_id, 'presentation_id' => $input->presentation_id])->first();
 
+        if ($supply) {
+            // Update the stock in the supplies table
+            $newStock = $supply->stock + $input->quantity;
+            $supply->stock = $newStock;
+            $supply->save();
+        } else {
+            // Create a new supply record if it doesn't exist
+            $supply = Supply::create(['reference_id' => $request->reference_id, 'product_id' => $request->product_id, 'presentation_id' => $request->presentation_id, 'stock' => $request->quantity]);
+        }
         return redirect('inputs');
     }
 
@@ -76,11 +84,5 @@ class InputController extends Controller
     {
         $input->delete();
         return redirect('inputs');
-    }
-
-    public function sum()
-    {
-        $total_quantity = Input::sum('cantidad');
-        return Inertia::render('Inputs/Sum', compact('total_quantity'));
     }
 }

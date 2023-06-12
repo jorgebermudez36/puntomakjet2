@@ -78,7 +78,7 @@ const logout = () => {
                                     :href="route('inputs.index')"
                                     :active="route().current('inputs.*')"
                                 >
-                                    Input
+                                    Transactions
                                 </NavLink>
                                 <NavLink
                                     :href="route('stocks.index')"

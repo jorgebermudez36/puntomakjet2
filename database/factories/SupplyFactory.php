@@ -23,7 +23,6 @@ class SupplyFactory extends Factory
             'reference_id' => product::all()->random()->id,
             'product_id' => product::all()->random()->id,
             'presentation_id' => presentation::all()->random()->id,
-            'quantity_id' => input::all()->random()->id,
             'stock' => $this->faker->numberBetween(1, 100),
         ];
     }

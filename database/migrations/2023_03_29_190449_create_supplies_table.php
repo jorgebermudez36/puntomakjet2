@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('supplies', function (Blueprint $table) {
             $table->id();
+            $table->integer('stock');
+            $table->timestamps();
+
             $table->foreignId('reference_id')->constrained('products');
             $table->foreignId('product_id')->constrained('products');
             $table->foreignId('presentation_id')->constrained('presentations');
-            $table->foreignId('quantity_id')->constrained('inputs');
-            $table->integer('stock');
-            $table->timestamps();
+            $table->foreignId('deleted_by')->nullable()->constrained('users');
         });
     }
 

@@ -15,6 +15,8 @@ class input extends Model
         "product_id",
         "presentation_id",
         'quantity',
+        "created_by",
+        "updated_by",
 
     ];
 
@@ -26,5 +28,12 @@ class input extends Model
     public function presentation()
     {
         return $this->belongsTo(Presentation::class);
+    }
+
+    public function supply()
+    {
+        return $this->belongsTo(Supply::class, 'reference_id', 'reference_id')
+            ->where('product_id', '=', $this->product_id)
+            ->where('presentation_id', '=', $this->presentation_id);
     }
 }

@@ -27,7 +27,7 @@ const form = useForm({
                 >
                     <InputLabel
                         for="presentation"
-                        class="font-sans text-lg font-medium text-gray-900 mx-3"
+                        class="font-sans font-medium text-gray-200 mx-3"
                         value="Presentation"
                     />
                     <br />
