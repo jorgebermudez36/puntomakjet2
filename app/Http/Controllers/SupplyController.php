@@ -17,7 +17,7 @@ class SupplyController extends Controller
      */
     public function index()
     {
-        $supplies = Supply::with(['product', 'presentation', 'input'])->paginate();
+        $supplies = Supply::with(['product', 'presentation'])->get();
         return Inertia::render('Stocks/Index', compact('supplies'));
     }
 
@@ -50,7 +50,8 @@ class SupplyController extends Controller
      */
     public function edit(supply $supply)
     {
-        //
+        return $supply;
+        return Inertia::render('Stocks/Edit', compact('supply'));
     }
 
     /**
@@ -66,6 +67,7 @@ class SupplyController extends Controller
      */
     public function destroy(supply $supply)
     {
-        //
+        $supply->delete();
+        return redirect('stocks');
     }
 }

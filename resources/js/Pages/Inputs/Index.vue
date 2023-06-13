@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { useForm, Head, Link } from "@inertiajs/vue3";
+import { useForm, Link } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
 import DangerButton from "@/Components/DangerButton.vue";
 import Paginate from "@/Components/Paginate.vue";
@@ -44,8 +44,7 @@ const deleteinput = (id, inputs) => {
 </script>
 
 <template>
-    <Head title="Input" />
-    <App-Layout>
+    <AppLayout title="Input">
         <div class="py-8">
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div
@@ -200,7 +199,7 @@ const deleteinput = (id, inputs) => {
                 </div>
             </div>
         </div>
-    </App-Layout>
+    </AppLayout>
 </template>
 
 <style>

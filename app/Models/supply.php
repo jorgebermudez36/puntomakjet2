@@ -16,6 +16,16 @@ class supply extends Model
         'stock',
     ];
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function presentation()
+    {
+        return $this->belongsTo(Presentation::class);
+    }
+
     public function input()
     {
         return $this->hasOne(Input::class, 'reference_id', 'reference_id')
