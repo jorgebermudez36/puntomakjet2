@@ -69,6 +69,12 @@ const logout = () => {
                                     Presentation
                                 </NavLink>
                                 <NavLink
+                                    :href="route('references.index')"
+                                    :active="route().current('references.*')"
+                                >
+                                    References
+                                </NavLink>
+                                <NavLink
                                     :href="route('products.index')"
                                     :active="route().current('products.*')"
                                 >
@@ -385,6 +391,12 @@ const logout = () => {
                             :active="route().current('presentations.*')"
                         >
                             Presentation
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('references.index')"
+                            :active="route().current('references.*')"
+                        >
+                            References
                         </ResponsiveNavLink>
                         <ResponsiveNavLink
                             :href="route('products.index')"

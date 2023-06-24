@@ -3,17 +3,17 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import Swal from "sweetalert2";
 import DangerButton from "@/Components/DangerButton.vue";
 import Paginate from "@/Components/Paginate.vue";
-import { useForm } from "@inertiajs/vue3";
+import { useForm, Link } from "@inertiajs/vue3";
 
 const props = defineProps({
-    supplies: { type: Array, required: true },
+    supplies: { type: Object, required: true },
 });
 
 const form = useForm({
     supply: "",
 });
 
-const deletesupply = (id, supplies) => {
+const deletesupply = (id, supply) => {
     const alerta = Swal.mixin({
         alerta: true,
         position: " ",
@@ -28,7 +28,7 @@ const deletesupply = (id, supplies) => {
 
     alerta
         .fire({
-            title: "Are you sure you want to delete " + supplies + "?",
+            title: "Are you sure you want to delete " + supply + "?",
             icon: "question",
             showCancelButton: true,
             confirmButtonText:
@@ -37,7 +37,7 @@ const deletesupply = (id, supplies) => {
         })
         .then((result) => {
             if (result.isConfirmed) {
-                form.delete(route("stocks.destroy", id));
+                form.delete(route("supplies.destroy", id));
             }
         });
 };
@@ -70,13 +70,6 @@ const deletesupply = (id, supplies) => {
                                 scope="col"
                                 class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
                             >
-                                Presentation
-                            </th>
-
-                            <th
-                                scope="col"
-                                class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
-                            >
                                 Stock
                             </th>
 
@@ -93,29 +86,30 @@ const deletesupply = (id, supplies) => {
                             <td
                                 class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                             >
-                                {{ form.reference_id }}
+                                {{ supply.reference.reference }}
                             </td>
                             <td
                                 class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                             >
-                                {{ form.product_id }}
+                                {{ supply.product.product }}
                             </td>
                             <td
                                 class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                             >
-                                {{ form.presentation_id }}
-                            </td>
-                            <td
-                                class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
-                            >
-                                {{ form.Stock }}
+                                {{ supply.stock }}
                             </td>
 
                             <td
                                 class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                             >
                                 <DangerButton
-                                    @click="($event) => deletesupply(supply.id)"
+                                    @click="
+                                        ($event) =>
+                                            deletesupply(
+                                                supply.id,
+                                                supply.product.product
+                                            )
+                                    "
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

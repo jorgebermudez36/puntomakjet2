@@ -20,6 +20,7 @@ const props = defineProps({
     inputs: { type: Array },
     products: { type: Array },
     presentations: { type: Array },
+    references: { type: Array },
 });
 </script>
 
@@ -39,7 +40,7 @@ const props = defineProps({
                         />
                         <div class="container">
                             <form
-                                prevent="
+                                @prevent="
                                     form.post(route('inputs.store'), {
                                         onSuccess: () => form.reset(),
                                     })
@@ -56,7 +57,7 @@ const props = defineProps({
                                         <div class="mt-1">
                                             <SelectInput
                                                 id="reference_id"
-                                                :optionValue="products"
+                                                :optionValue="references"
                                                 v-model="form.reference_id"
                                                 type="text"
                                                 class="mt-1 block w-full"

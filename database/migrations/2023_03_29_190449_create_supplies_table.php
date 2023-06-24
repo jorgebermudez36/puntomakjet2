@@ -16,9 +16,8 @@ return new class extends Migration
             $table->integer('stock');
             $table->timestamps();
 
-            $table->foreignId('reference_id')->constrained('products');
+            $table->foreignId('reference_id')->constrained('references');
             $table->foreignId('product_id')->constrained('products');
-            $table->foreignId('presentation_id')->constrained('presentations');
             $table->foreignId('deleted_by')->nullable()->constrained('users');
         });
     }

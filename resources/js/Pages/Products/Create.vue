@@ -7,7 +7,6 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm, Link, Head } from "@inertiajs/vue3";
 
 const form = useForm({
-    reference: " ",
     product: " ",
 });
 </script>
@@ -27,18 +26,6 @@ const form = useForm({
                             })
                         "
                     >
-                        <div class="mt-2 mx-3">
-                            <InputLabel
-                                for="reference"
-                                class="font-sans text-lg font-medium text-gray-900 mx-3"
-                                value="Reference"
-                            />
-                            <TextInput
-                                v-model="form.reference"
-                                placeholder="Type the reference here..."
-                                class="w-11/12 mx-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                            />
-                        </div>
                         <div class="mt-2 mx-3">
                             <InputLabel
                                 for="product"

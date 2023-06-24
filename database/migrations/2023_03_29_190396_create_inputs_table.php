@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
 
 return new class extends Migration
 {
@@ -14,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('inputs', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantity')->default(0);
-            $table->softDeletes();
-            $table->timestamps();
-
-            $table->foreignId('reference_id')->constrained('products');
+            $table->foreignId('reference_id')->constrained('references');
             $table->foreignId('product_id')->constrained('products');
             $table->foreignId('presentation_id')->constrained('presentations');
-            $table->foreignId('created_by')->nullable()->constrained('users');
-            $table->foreignId('updated_by')->nullable()->constrained('users');
-            $table->foreignId('deleted_by')->nullable()->constrained('users');
+            $table->integer('quantity')->default(0);
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->softDeletes();
+            $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->timestamps();
         });
     }
 

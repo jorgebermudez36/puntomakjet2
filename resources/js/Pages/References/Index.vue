@@ -1,22 +1,22 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { useForm, Link } from "@inertiajs/vue3";
+import { useForm, Head, Link } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
 import DangerButton from "@/Components/DangerButton.vue";
 import Paginate from "@/Components/Paginate.vue";
 
 const props = defineProps({
-    inputs: { type: Object },
+    references: { type: Object },
 });
 
 const form = useForm({
-    input: "",
+    reference: "",
 });
 
-const deleteinput = (id, input) => {
+const deleteReference = (id, reference) => {
     const alerta = Swal.mixin({
         alerta: true,
-        position: " ",
+        position: "",
         showConfirmButton: true,
         timer: 9000,
         timerProgressBar: true,
@@ -28,7 +28,7 @@ const deleteinput = (id, input) => {
 
     alerta
         .fire({
-            title: "Are you sure you want to delete " + input + "?",
+            title: "Are you sure you want to delete " + reference + "?",
             icon: "question",
             showCancelButton: true,
             confirmButtonText:
@@ -37,22 +37,23 @@ const deleteinput = (id, input) => {
         })
         .then((result) => {
             if (result.isConfirmed) {
-                form.delete(route("inputs.destroy", id));
+                form.delete(route("references.destroy", id));
             }
         });
 };
 </script>
 
 <template>
-    <AppLayout title="Input">
+    <Head title="Reference" />
+    <AppLayout>
         <div class="py-8">
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
                 <div
                     class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg"
                 >
                     <Link
                         class="my-1.5 text-right inline-block w-full sm:w-auto px-3 py-2 bg-green-600 text-sm font-medium text-white rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                        :href="route('inputs.create')"
+                        :href="route('references.create')"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +69,6 @@ const deleteinput = (id, input) => {
                         </svg>
                         Create
                     </Link>
-
                     <table
                         class="border-double border-2 rounded border-sky-500 table-fixed w-full"
                     >
@@ -78,87 +78,42 @@ const deleteinput = (id, input) => {
                             <tr>
                                 <th
                                     scope="col"
-                                    class="w-1/5 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
+                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
                                 >
-                                    #
+                                    Referencias
                                 </th>
                                 <th
-                                    scope="col"
-                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
-                                >
-                                    Reference
-                                </th>
-                                <th
-                                    scope="col"
-                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
-                                >
-                                    Products
-                                </th>
-                                <th
-                                    scope="col"
-                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
-                                >
-                                    Presentation
-                                </th>
-
-                                <th
-                                    scope="col"
-                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
-                                >
-                                    Quantity
-                                </th>
-                                <th
-                                    scope="col"
-                                    class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
+                                    class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
                                 >
                                     Edit
                                 </th>
                                 <th
-                                    scope="col"
-                                    class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
+                                    class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
                                 >
                                     Delete
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-slate-700">
+                        <tbody class="bg-white divide-y divide-slate-500">
                             <tr
-                                v-for="(input, i) in inputs.data"
-                                :key="input.id"
+                                v-for="reference in references.data"
+                                :key="reference.id"
                             >
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ i + 1 }}
+                                    {{ reference.reference }}
                                 </td>
-                                <td
-                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
-                                >
-                                    {{ input.reference.reference }}
-                                </td>
-                                <td
-                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
-                                >
-                                    {{ input.product.product }}
-                                </td>
-                                <td
-                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
-                                >
-                                    {{ input.presentation.presentation }}
-                                </td>
-                                <td
-                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
-                                >
-                                    {{ input.quantity }}
-                                </td>
-
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
                                     <button class="text-center py-1">
                                         <Link
                                             :href="
-                                                route('inputs.edit', input.id)
+                                                route(
+                                                    'references.edit',
+                                                    reference.id
+                                                )
                                             "
                                             ><svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -179,9 +134,9 @@ const deleteinput = (id, input) => {
                                     <DangerButton
                                         @click="
                                             ($event) =>
-                                                deleteinput(
-                                                    input.id,
-                                                    input.product.product
+                                                deleteReference(
+                                                    reference.id,
+                                                    reference.reference
                                                 )
                                         "
                                     >
@@ -202,7 +157,7 @@ const deleteinput = (id, input) => {
                             </tr>
                         </tbody>
                     </table>
-                    <Paginate :pagination="inputs" />
+                    <Paginate :pagination="references" />
                 </div>
             </div>
         </div>
@@ -211,7 +166,18 @@ const deleteinput = (id, input) => {
 
 <style>
 .text-xl {
-    font-size: 1.5rem;
-    color: azure;
+    font-size: 2rem;
+    color: antiquewhite;
+    align-items: center;
+    max-width: 100%;
+}
+
+.table-auto {
+    border-collapse: collapse;
+    width: 100%;
+    color: blanchedalmond;
+    border-color: antiquewhite;
+    border-width: 1px;
+    margin-top: 20px;
 }
 </style>

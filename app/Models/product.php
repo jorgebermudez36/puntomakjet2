@@ -12,7 +12,6 @@ class product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'reference',
         'product',
     ];
 }

@@ -78,15 +78,15 @@ const deletePresentation = (id, presentation) => {
                             <tr>
                                 <th
                                     scope="col"
-                                    class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
+                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
                                 >
-                                    Id
+                                    Presentation x *
                                 </th>
                                 <th
                                     scope="col"
                                     class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
                                 >
-                                    Presentation
+                                    Quantity
                                 </th>
                                 <th
                                     class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
@@ -108,12 +108,12 @@ const deletePresentation = (id, presentation) => {
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ presentation.id }}
+                                    {{ presentation.presentation }}
                                 </td>
                                 <td
-                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500"
+                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ presentation.presentation }}
+                                    {{ presentation.quantity }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"

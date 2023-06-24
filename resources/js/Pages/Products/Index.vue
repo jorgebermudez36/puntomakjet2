@@ -10,7 +10,7 @@ const props = defineProps({
 });
 
 const form = useForm({
-    products: "",
+    product: "",
 });
 
 const deleteproduct = (id, product) => {
@@ -87,12 +87,6 @@ const deleteproduct = (id, product) => {
                                     scope="col"
                                     class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
                                 >
-                                    Reference
-                                </th>
-                                <th
-                                    scope="col"
-                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
-                                >
                                     Products
                                 </th>
                                 <th
@@ -111,18 +105,13 @@ const deleteproduct = (id, product) => {
                         </thead>
                         <tbody class="bg-white divide-y divide-slate-700">
                             <tr
-                                v-for="product in products.data"
+                                v-for="(product, i) in products.data"
                                 :key="product.id"
                             >
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ product.id }}
-                                </td>
-                                <td
-                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
-                                >
-                                    {{ product.reference }}
+                                    {{ i + 1 }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
@@ -160,7 +149,10 @@ const deleteproduct = (id, product) => {
                                     <DangerButton
                                         @click="
                                             ($event) =>
-                                                deleteproduct(product.id)
+                                                deleteproduct(
+                                                    product.id,
+                                                    product.product
+                                                )
                                         "
                                     >
                                         <svg

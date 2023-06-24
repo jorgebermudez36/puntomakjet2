@@ -12,7 +12,6 @@ const props = defineProps({
 });
 
 const form = useForm({
-    reference: props.product.reference,
     product: props.product.product,
 });
 </script>
@@ -32,20 +31,6 @@ const form = useForm({
                             })
                         "
                     >
-                        <InputLabel
-                            for="reference"
-                            class="font-sans text-lg font-medium text-gray-900 mx-3"
-                            value="Reference"
-                        />
-                        <TextInput
-                            v-model="form.reference"
-                            class="w-11/12 mx-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                        />
-                        <InputError
-                            class="mt-2 mx-3"
-                            message="This field is required"
-                            :errors="form.errors.reference"
-                        />
                         <InputLabel
                             for="product"
                             class="font-sans text-lg font-medium text-gray-900 mx-3"

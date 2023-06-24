@@ -8,8 +8,7 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 
 const form = useForm({
-    presentation: "",
-    quantity: "",
+    reference: "",
 });
 </script>
 
@@ -21,31 +20,19 @@ const form = useForm({
             >
                 <form
                     @submit.prevent="
-                        form.post(route('presentations.store'), {
+                        form.post(route('references.store'), {
                             onSuccess: () => form.reset(),
                         })
                     "
                 >
                     <div class="flex flex-col mt-2 mx-3.5">
                         <InputLabel
-                            for="presentation"
+                            for="reference"
                             class="font-sans font-medium text-gray-200"
-                            value="Presentation"
+                            value="Reference"
                         />
                         <TextInput
-                            v-model="form.presentation"
-                            class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                        ></TextInput>
-                    </div>
-                    <div class="flex flex-col mt-4 mx-3.5">
-                        <InputLabel
-                            for="Quantity"
-                            class="font-sans font-medium text-gray-200"
-                            value="Quantity"
-                        />
-                        <TextInput
-                            type="number"
-                            v-model="form.quantity"
+                            v-model="form.reference"
                             class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         ></TextInput>
                     </div>
