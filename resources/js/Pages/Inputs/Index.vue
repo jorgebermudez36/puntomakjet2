@@ -80,7 +80,7 @@ const deleteinput = (id, input) => {
                                     scope="col"
                                     class="w-1/5 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
                                 >
-                                    #
+                                    Number
                                 </th>
                                 <th
                                     scope="col"

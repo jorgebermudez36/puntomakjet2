@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { useForm, Head, Link } from "@inertiajs/vue3";
+import { useForm, Link } from "@inertiajs/vue3";
 import Swal from "sweetalert2";
 import DangerButton from "@/Components/DangerButton.vue";
 import Paginate from "@/Components/Paginate.vue";
@@ -44,8 +44,7 @@ const deleteproduct = (id, product) => {
 </script>
 
 <template>
-    <Head title="Product" />
-    <App-Layout>
+    <AppLayout title="Products">
         <div class="py-8">
             <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
                 <div
@@ -81,13 +80,19 @@ const deleteproduct = (id, product) => {
                                     scope="col"
                                     class="w-1/5 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
                                 >
-                                    id
+                                    Number
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/5 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
+                                >
+                                    Reference
                                 </th>
                                 <th
                                     scope="col"
                                     class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
                                 >
-                                    Products
+                                    Product
                                 </th>
                                 <th
                                     scope="col"
@@ -112,6 +117,11 @@ const deleteproduct = (id, product) => {
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
                                     {{ i + 1 }}
+                                </td>
+                                <td
+                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
+                                >
+                                    {{ product.reference.reference }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
@@ -176,7 +186,7 @@ const deleteproduct = (id, product) => {
                 </div>
             </div>
         </div>
-    </App-Layout>
+    </AppLayout>
 </template>
 
 <style>

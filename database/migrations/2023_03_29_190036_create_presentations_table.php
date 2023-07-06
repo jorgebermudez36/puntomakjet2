@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('presentations', function (Blueprint $table) {
             $table->id();
             $table->string('presentation');
-            $table->string('quantity')->default(0);
             $table->timestamps();
         });
     }

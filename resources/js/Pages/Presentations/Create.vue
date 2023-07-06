@@ -9,7 +9,6 @@ import { useForm, Link } from "@inertiajs/vue3";
 
 const form = useForm({
     presentation: "",
-    quantity: "",
 });
 </script>
 
@@ -37,7 +36,7 @@ const form = useForm({
                             class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         ></TextInput>
                     </div>
-                    <div class="flex flex-col mt-4 mx-3.5">
+                    <!-- <div class="flex flex-col mt-4 mx-3.5">
                         <InputLabel
                             for="Quantity"
                             class="font-sans font-medium text-gray-200"
@@ -48,7 +47,7 @@ const form = useForm({
                             v-model="form.quantity"
                             class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         ></TextInput>
-                    </div>
+                    </div> -->
                     <InputError
                         class="mt-2 mx-3"
                         message="This field is required"

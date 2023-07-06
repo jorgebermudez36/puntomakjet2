@@ -82,12 +82,12 @@ const deletePresentation = (id, presentation) => {
                                 >
                                     Presentation x *
                                 </th>
-                                <th
+                                <!-- <th
                                     scope="col"
                                     class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
                                 >
                                     Quantity
-                                </th>
+                                </th> -->
                                 <th
                                     class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
                                 >
@@ -110,11 +110,11 @@ const deletePresentation = (id, presentation) => {
                                 >
                                     {{ presentation.presentation }}
                                 </td>
-                                <td
+                                <!--  <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
                                     {{ presentation.quantity }}
-                                </td>
+                                </td> -->
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >

@@ -37,7 +37,7 @@ class PresentationController extends Controller
     {
         $request->validate([
             'presentation' => 'required|min:2|max:50',
-            'quantity' => 'required|min:1|max:50',
+
         ]);
 
         $presentation = new Presentation($request->input());
@@ -66,7 +66,7 @@ class PresentationController extends Controller
     {
         $request->validate([
             'presentation' => 'required',
-            'quantity' => 'required',
+
         ]);
         $presentation->update($request->all());
         return redirect('presentations');

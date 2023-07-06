@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\product;
+use App\Models\reference;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -16,7 +17,8 @@ class ProductController extends Controller
     public function index()
     {
         /* return $products = Product::paginate(); */ // This is the only line that changes 
-        $products = Product::paginate();
+        $products = Product::with('reference')->paginate(10);
+
         return Inertia::render(
             'Products/Index',
             compact('products')
@@ -25,13 +27,16 @@ class ProductController extends Controller
 
     public function create()
     {
-        return Inertia::render('Products/Create');
+        $references = Reference::all();
+        return Inertia::render('Products/Create', compact('references'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'reference_id' => 'required',
             'product' => 'required',
+
         ]);
 
         $product = new Product($request->input());
@@ -41,14 +46,17 @@ class ProductController extends Controller
 
     public function edit(product $product)
     {
-        return Inertia::render('Products/Edit', ['product' => $product]);
+        $references = Reference::all();
+        return Inertia::render('Products/Edit', compact('product', 'references'));
     }
 
     public function update(Request $request, product $product)
     {
         $request->validate([
+            'reference_id' => 'required',
             'product' => 'required',
         ]);
+
         $product->update($request->all());
         return redirect('products');
     }

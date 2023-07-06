@@ -2,12 +2,19 @@
 import AppLayout from "@/Layouts/AppLayout.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
+import SelectInput from "@/Components/SelectInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import { useForm, Link, Head } from "@inertiajs/vue3";
+import { Head, useForm, Link } from "@inertiajs/vue3";
 
 const form = useForm({
-    product: " ",
+    reference_id: "",
+    product: "",
+});
+
+const props = defineProps({
+    references: { type: Array },
+    products: { type: Array },
 });
 </script>
 
@@ -26,19 +33,41 @@ const form = useForm({
                             })
                         "
                     >
-                        <div class="mt-2 mx-3">
-                            <InputLabel
-                                for="product"
-                                class="font-sans text-lg font-medium text-gray-900 mx-3"
-                                value="Product"
-                            />
-                        </div>
-                        <div class="mt-2 mx-3">
-                            <TextInput
-                                v-model="form.product"
-                                placeholder="Type your product here..."
-                                class="w-11/12 mx-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                            />
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2"
+                        >
+                            <div>
+                                <InputLabel
+                                    for="reference_id"
+                                    value="Reference"
+                                    class="mx-3 my-4"
+                                />
+                                <div class="mt-1 mx-3">
+                                    <SelectInput
+                                        id="reference_id"
+                                        :optionValue="references"
+                                        v-model="form.reference_id"
+                                        type="text"
+                                        class="mt-1 block w-full"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <InputLabel
+                                    for="product"
+                                    value="Product"
+                                    class="mx-3 my-4"
+                                />
+                                <div class="mt-1 mx-3">
+                                    <TextInput
+                                        type="text"
+                                        name="product"
+                                        id="product"
+                                        v-model="form.product"
+                                        class="mt-1 block w-full"
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div class="mt-1 mx-3">
                             <PrimaryButton class="mx-3 my-4"

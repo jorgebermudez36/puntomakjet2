@@ -8,7 +8,7 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 
 const form = useForm({
-    reference: "",
+    reference: " ",
 });
 </script>
 

@@ -33,7 +33,7 @@ class InputController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'reference_id' => 'required',
             'product_id' => 'required',
             'presentation_id' => 'required',
@@ -41,22 +41,24 @@ class InputController extends Controller
 
         ]);
 
-        $validatedData['created_by'] = Auth::id();
+        $request['created_by'] = Auth::id();
 
-        $input = Input::create($validatedData);
+        $input = new Input($request->input());
+        $input->save();
 
         // Retrieve the corresponding supply record based on reference_id, product_id, and presentation_id
-        $supply = Supply::where(['reference_id' => $input->reference_id, 'product_id' => $input->product_id])->first();
+        $supply = Supply::where(['reference_id' => $input->reference_id, 'product_id' => $input->product_id, 'stock' => $input->quantity])->first();
 
-        if ($supply) {
+        /* if ($supply) {
             // Update the stock in the supplies table
-            $newStock = $input->calculateStock();
+            $newStock = $supply->calculateStock();
             $supply->stock = $newStock;
             $supply->save();
         } else {
             // Create a new supply record if it doesn't exist
-            $supply = Supply::create(['reference_id' => $request->reference_id, 'product_id' => $request->product_id, 'stock' => $request->quantity]);
-        }
+            $supply = new Supply(['reference_id' => $request->reference_id, 'product_id' => $request->product_id, 'stock' => $request->quantity]);
+            $supply->save();
+        } */
         return redirect('inputs');
     }
 
