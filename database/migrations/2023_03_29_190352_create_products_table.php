@@ -14,10 +14,10 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('product');
+            $table->string('name');
             $table->timestamps();
 
-            $table->foreignId('reference_id')->references('id')->on('references');
+            $table->foreignId('reference_id')->constrained('references')->onUpdate('cascade')->onDelete('cascade');
         });
     }
     /**

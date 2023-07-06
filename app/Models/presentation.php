@@ -11,6 +11,6 @@ class presentation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'presentation',
+        "name",
     ];
 }

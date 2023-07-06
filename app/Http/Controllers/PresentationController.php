@@ -36,7 +36,7 @@ class PresentationController extends Controller
 
     {
         $request->validate([
-            'presentation' => 'required|min:2|max:50',
+            'name' => 'required',
 
         ]);
 
@@ -56,7 +56,7 @@ class PresentationController extends Controller
      */
     public function edit(presentation $presentation)
     {
-        return Inertia::render('Presentations/Edit', ['presentation' => $presentation]);
+        return Inertia::render('Presentations/Edit', compact('presentation'));
     }
 
     /**
@@ -65,7 +65,7 @@ class PresentationController extends Controller
     public function update(Request $request, presentation $presentation)
     {
         $request->validate([
-            'presentation' => 'required',
+            'name' => 'required',
 
         ]);
         $presentation->update($request->all());

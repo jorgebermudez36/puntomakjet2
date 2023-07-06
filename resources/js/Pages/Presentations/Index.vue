@@ -78,16 +78,16 @@ const deletePresentation = (id, presentation) => {
                             <tr>
                                 <th
                                     scope="col"
+                                    class="w-1/5 px-4 py-2 text-md font-medium text-gray-500 upper tracking-wider"
+                                >
+                                    Number
+                                </th>
+                                <th
+                                    scope="col"
                                     class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
                                 >
                                     Presentation x *
                                 </th>
-                                <!-- <th
-                                    scope="col"
-                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                    Quantity
-                                </th> -->
                                 <th
                                     class="w-1/4 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
                                 >
@@ -102,19 +102,19 @@ const deletePresentation = (id, presentation) => {
                         </thead>
                         <tbody class="bg-white divide-y divide-slate-500">
                             <tr
-                                v-for="presentation in presentations.data"
+                                v-for="(presentation, i) in presentations.data"
                                 :key="presentation.id"
                             >
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ presentation.presentation }}
+                                    {{ i + 1 }}
                                 </td>
-                                <!--  <td
+                                <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ presentation.quantity }}
-                                </td> -->
+                                    {{ presentation.name }}
+                                </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
@@ -147,7 +147,7 @@ const deletePresentation = (id, presentation) => {
                                             ($event) =>
                                                 deletePresentation(
                                                     presentation.id,
-                                                    presentation.presentation
+                                                    presentation.name
                                                 )
                                         "
                                     >

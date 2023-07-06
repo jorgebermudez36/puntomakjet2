@@ -17,8 +17,8 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            "reference" => $this->faker->word,
-            "product" => $this->faker->word,
+            "reference_id" => $this->faker->word,
+            "name" => $this->faker->word,
         ];
     }
 }
