@@ -80,6 +80,12 @@ const deleteReference = (id, reference) => {
                                     scope="col"
                                     class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
                                 >
+                                    Number
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-1/2 px-4 py-2 text-md font-medium text-gray-500 uppercase tracking-wider"
+                                >
                                     Referencias
                                 </th>
                                 <th
@@ -96,13 +102,18 @@ const deleteReference = (id, reference) => {
                         </thead>
                         <tbody class="bg-white divide-y divide-slate-500">
                             <tr
-                                v-for="reference in references.data"
+                                v-for="(reference, i) in references.data"
                                 :key="reference.id"
                             >
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ reference.reference }}
+                                    {{ i + 1 }}
+                                </td>
+                                <td
+                                    class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
+                                >
+                                    {{ reference.name }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
@@ -136,7 +147,7 @@ const deleteReference = (id, reference) => {
                                             ($event) =>
                                                 deleteReference(
                                                     reference.id,
-                                                    reference.reference
+                                                    reference.name
                                                 )
                                         "
                                     >

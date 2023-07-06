@@ -12,7 +12,7 @@ class reference extends Model
     use HasFactory;
 
     protected $fillable = [
-        'reference',
+        "name",
     ];
 
     public function product()

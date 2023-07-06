@@ -42,9 +42,6 @@ const form = useForm({
                         v-model="form.name"
                         class="w-11/12 mx-3 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                     ></TextInput>
-
-                    <br />
-
                     <InputError
                         class="mt-2 mx-3"
                         message="This field is required"

@@ -40,7 +40,7 @@ class ReferenceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'reference' => 'required',
+            'name' => 'required',
         ]);
 
         $reference = new Reference($request->input());
@@ -72,11 +72,11 @@ class ReferenceController extends Controller
      */
     public function update(Request $request, reference $reference)
     {
-        $validatedData = $request->validate([
-            'reference' => 'required',
+        $request->validate([
+            'name' => 'required',
         ]);
 
-        $reference->update($validatedData);
+        $reference->update($request->all());
         return redirect('references');
     }
 

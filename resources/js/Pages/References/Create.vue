@@ -8,7 +8,7 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 
 const form = useForm({
-    reference: " ",
+    name: " ",
 });
 </script>
 
@@ -32,7 +32,7 @@ const form = useForm({
                             value="Reference"
                         />
                         <TextInput
-                            v-model="form.reference"
+                            v-model="form.name"
                             class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                         ></TextInput>
                     </div>
