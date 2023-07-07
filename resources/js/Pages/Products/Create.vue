@@ -9,7 +9,7 @@ import { Head, useForm, Link } from "@inertiajs/vue3";
 
 const form = useForm({
     reference_id: "",
-    product: "",
+    name: "",
 });
 
 const props = defineProps({
@@ -63,7 +63,7 @@ const props = defineProps({
                                         type="text"
                                         name="product"
                                         id="product"
-                                        v-model="form.product"
+                                        v-model="form.name"
                                         class="mt-1 block w-full"
                                     />
                                 </div>

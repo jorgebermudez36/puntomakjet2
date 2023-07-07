@@ -35,13 +35,18 @@ class ProductController extends Controller
     {
         $request->validate([
             'reference_id' => 'required',
-            'product' => 'required',
+            'name' => 'required',
 
         ]);
 
         $product = new Product($request->input());
         $product->save();
         return redirect('products');
+    }
+
+    public function show(product $product)
+    {
+        //
     }
 
     public function edit(product $product)
@@ -54,7 +59,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'reference_id' => 'required',
-            'product' => 'required',
+            'name' => 'required',
         ]);
 
         $product->update($request->all());
@@ -65,10 +70,5 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect('products');
-    }
-
-    public function show(product $product)
-    {
-        //
     }
 }

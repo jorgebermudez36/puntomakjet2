@@ -121,12 +121,12 @@ const deleteproduct = (id, product) => {
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ product.reference.reference }}
+                                    {{ product.reference.name }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ product.product }}
+                                    {{ product.name }}
                                 </td>
 
                                 <td

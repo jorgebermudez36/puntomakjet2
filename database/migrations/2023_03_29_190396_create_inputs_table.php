@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('inputs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reference_id')->constrained('references');
-            $table->foreignId('product_id')->constrained('products');
-            $table->foreignId('presentation_id')->constrained('presentations');
             $table->integer('quantity')->default(0);
+            $table->timestamps();
+
+            $table->foreignId('reference_id')->constrained('references')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('presentation_id')->constrained('presentations')->onUpdate('cascade')->onDelete('cascade');
+
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
-            $table->softDeletes();
             $table->unsignedBigInteger('deleted_by')->nullable();
-            $table->timestamps();
         });
     }
 

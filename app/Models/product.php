@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Reference;
+use App\Models\reference;
 
 class product extends Model
 {
@@ -12,10 +12,10 @@ class product extends Model
 
     protected $fillable = [
         "reference_id",
-        "product",
+        "name",
     ];
 
-    // Relación uno a muchos (inversa)
+    // Relación uno a muchos
     public function reference()
     {
         return $this->belongsTo(Reference::class);

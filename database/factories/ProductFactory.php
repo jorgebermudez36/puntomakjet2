@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\reference;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\product>
@@ -17,8 +19,8 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            "reference_id" => $this->faker->word,
-            "name" => $this->faker->word,
+            'reference_id' => reference::all()->random()->id,
+            'name' => $this->faker->word,
         ];
     }
 }
