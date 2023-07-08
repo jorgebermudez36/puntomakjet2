@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('input_presentations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('input_id')->constrained('inputs');
-            $table->foreignId('presentation_id')->constrained('presentations');
-            $table->foreignId('product_id')->constrained('inputs');
-            $table->foreignId('reference_id')->constrained('inputs');
+
+            $table->foreignId('presentation_id')->constrained('presentations')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

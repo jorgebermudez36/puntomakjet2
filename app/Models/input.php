@@ -50,17 +50,4 @@ class input extends Model
     {
         return $this->belongsTo(User::class, 'deleted_by');
     }
-
-    public function supply()
-    {
-        return $this->belongsTo(Supply::class, 'reference_id', 'reference_id')
-            ->where('product_id', '=', $this->product_id);
-    }
-
-    public function calculateSock()
-    {
-        $inputQuantity = self::where('presentation_id', $this->presentation_id)->sum('quantity');
-        $presentationQuantity = $this->presentation->quantity;
-        return $presentationQuantity + $inputQuantity;
-    }
 }

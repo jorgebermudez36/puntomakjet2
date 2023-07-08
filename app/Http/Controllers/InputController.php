@@ -72,7 +72,11 @@ class InputController extends Controller
      */
     public function edit(input $input)
     {
-        return Inertia::render('Inputs/Edit', ['inputs' => $input]);
+        $references = \App\Models\Reference::all();
+        $products = \App\Models\Product::all();
+        $presentations = \App\Models\Presentation::all();
+
+        return Inertia::render('Inputs/Edit', compact('input', 'references', 'products', 'presentations'));
     }
 
     /**
@@ -80,7 +84,18 @@ class InputController extends Controller
      */
     public function update(Request $request, input $input)
     {
-        //
+        $request->validate([
+            'reference_id' => 'required',
+            'product_id' => 'required',
+            'presentation_id' => 'required',
+            'quantity' => 'required|Integer',
+
+        ]);
+
+        $request['updated_by'] = Auth::id();
+
+        $input->update($request->all());
+        return redirect('inputs');
     }
 
     /**
@@ -88,6 +103,7 @@ class InputController extends Controller
      */
     public function destroy(input $input)
     {
+        $input['deleted_by'] = Auth::id();
         $input->delete();
         return redirect('inputs');
     }

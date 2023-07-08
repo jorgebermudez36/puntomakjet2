@@ -12,4 +12,9 @@ class presentation extends Model
     protected $fillable = [
         "name",
     ];
+
+    public function input()
+    {
+        return $this->hasMany(input::class);
+    }
 }

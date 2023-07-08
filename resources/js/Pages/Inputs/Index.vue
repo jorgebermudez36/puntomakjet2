@@ -134,17 +134,17 @@ const deleteinput = (id, input) => {
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ input.reference.reference }}
+                                    {{ input.reference.name }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ input.product.product }}
+                                    {{ input.product.name }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"
                                 >
-                                    {{ input.presentation.presentation }}
+                                    {{ input.presentation.name }}
                                 </td>
                                 <td
                                     class="px-4 py-1 border border-gray-400 divide-y divide-slate-500 text-center"

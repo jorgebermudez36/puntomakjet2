@@ -16,8 +16,8 @@ class reference extends Model
     ];
 
     // One to many (inverse) relationships
-    public function product()
+    public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class);
     }
 }

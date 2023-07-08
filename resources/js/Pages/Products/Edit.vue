@@ -8,21 +8,21 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 
-const form = useForm({
-    reference_id: props.product.reference_id,
-    name: props.product.name,
+const props = defineProps({
+    // references: { type: Array },
+    product: { type: Array },
 });
 
-const props = defineProps({
-    references: { type: Array },
-    product: { type: Array },
+const form = useForm({
+    //reference_id: props.product.reference_id,
+    name: props.product.name,
 });
 </script>
 
 <template>
     <AppLayout title="Edit Product">
         <div class="py-12">
-            <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div
                     class="bg-white dark:bg-slate-500 overflow-hidden shadow-xl sm:rounded-lg"
                 >
@@ -36,7 +36,7 @@ const props = defineProps({
                         <div
                             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2"
                         >
-                            <div>
+                            <!-- <div>
                                 <InputLabel
                                     for="reference_id"
                                     value="Reference"
@@ -51,7 +51,7 @@ const props = defineProps({
                                         class="mt-1 block w-full"
                                     />
                                 </div>
-                            </div>
+                            </div> -->
                             <div>
                                 <InputLabel
                                     for="product"

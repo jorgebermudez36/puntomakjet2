@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         /* return $products = Product::paginate(); */ // This is the only line that changes 
-        $products = Product::with('reference')->paginate(10);
+        $products = Product::paginate();
 
         return Inertia::render(
             'Products/Index',
@@ -27,14 +27,12 @@ class ProductController extends Controller
 
     public function create()
     {
-        $references = Reference::all();
-        return Inertia::render('Products/Create', compact('references'));
+        return Inertia::render('Products/Create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'reference_id' => 'required',
             'name' => 'required',
 
         ]);
@@ -51,14 +49,12 @@ class ProductController extends Controller
 
     public function edit(product $product)
     {
-        $references = Reference::all();
-        return Inertia::render('Products/Edit', compact('product', 'references'));
+        return Inertia::render('Products/Edit', compact('product'));
     }
 
     public function update(Request $request, product $product)
     {
         $request->validate([
-            'reference_id' => 'required',
             'name' => 'required',
         ]);
 

@@ -4,13 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\reference;
 
-class product extends Model
+class product_reference extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        "name",
-    ];
 }

@@ -71,7 +71,7 @@ const props = defineProps({
                                             value="Product"
                                         />
                                         <div class="mt-1">
-                                            <SelectProduct
+                                            <SelectInput
                                                 id="product_id"
                                                 :optionValue="products"
                                                 v-model="form.product_id"
@@ -87,7 +87,7 @@ const props = defineProps({
                                             value="Presentation"
                                         />
                                         <div class="mt-1">
-                                            <SelectPres
+                                            <SelectInput
                                                 id="presentation_id"
                                                 :optionValue="presentations"
                                                 v-model="form.presentation_id"

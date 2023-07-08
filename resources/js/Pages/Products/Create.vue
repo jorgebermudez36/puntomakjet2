@@ -36,7 +36,7 @@ const props = defineProps({
                         <div
                             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2"
                         >
-                            <div>
+                            <!--  <div>
                                 <InputLabel
                                     for="reference_id"
                                     value="Reference"
@@ -51,7 +51,7 @@ const props = defineProps({
                                         class="mt-1 block w-full"
                                     />
                                 </div>
-                            </div>
+                            </div> -->
                             <div>
                                 <InputLabel
                                     for="product"
