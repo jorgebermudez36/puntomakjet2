@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->foreignId('reference_id')->constrained('references');
             $table->foreignId('product_id')->constrained('products');
-            $table->foreignId('deleted_by')->nullable()->constrained('users');
+            $table->foreignId('presentation_id')->constrained('presentations');
         });
     }
 

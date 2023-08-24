@@ -3,18 +3,15 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
 import TextInput from "@/Components/TextInput.vue";
-import SelectInput from "@/Components/SelectInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { useForm, Link } from "@inertiajs/vue3";
 
 const props = defineProps({
-    // references: { type: Array },
     product: { type: Array },
 });
 
 const form = useForm({
-    //reference_id: props.product.reference_id,
     name: props.product.name,
 });
 </script>
@@ -36,22 +33,6 @@ const form = useForm({
                         <div
                             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2"
                         >
-                            <!-- <div>
-                                <InputLabel
-                                    for="reference_id"
-                                    value="Reference"
-                                    class="mx-3 my-4"
-                                />
-                                <div class="mt-1 mx-3">
-                                    <SelectInput
-                                        id="reference_id"
-                                        :optionValue="references"
-                                        v-model="form.reference_id"
-                                        type="text"
-                                        class="mt-1 block w-full"
-                                    />
-                                </div>
-                            </div> -->
                             <div>
                                 <InputLabel
                                     for="product"

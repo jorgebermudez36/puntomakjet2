@@ -181,7 +181,7 @@ const deleteinput = (id, input) => {
                                             ($event) =>
                                                 deleteinput(
                                                     input.id,
-                                                    input.product.product
+                                                    input.product.name
                                                 )
                                         "
                                     >

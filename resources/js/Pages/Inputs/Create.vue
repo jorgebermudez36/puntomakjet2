@@ -4,8 +4,6 @@ import { Head, useForm, Link } from "@inertiajs/vue3";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import SelectInput from "@/Components/SelectInput.vue";
-import SelectProduct from "@/Components/SelectProduct.vue";
-import SelectPres from "@/Components/SelectPres.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
@@ -113,20 +111,21 @@ const props = defineProps({
                                         </div>
                                     </div>
                                 </div>
+                                <PrimaryButton
+                                    @click="
+                                        form.post(route('inputs.store'), {
+                                            onSuccess: () => form.reset(),
+                                        })
+                                    "
+                                    >Save</PrimaryButton
+                                >
+                                <SecondaryButton>
+                                    <Link :href="route('inputs.index')"
+                                        >Cancel</Link
+                                    >
+                                </SecondaryButton>
                             </form>
                         </div>
-
-                        <PrimaryButton
-                            @click="
-                                form.post(route('inputs.store'), {
-                                    onSuccess: () => form.reset(),
-                                })
-                            "
-                            >Save</PrimaryButton
-                        >
-                        <SecondaryButton>
-                            <Link :href="route('inputs.index')">Cancel</Link>
-                        </SecondaryButton>
                     </div>
                 </div>
             </div>

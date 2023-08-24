@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('input_presentations', function (Blueprint $table) {
+        Schema::create('inputs', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('presentation_id')->constrained('presentations')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('quantity');
             $table->timestamps();
+
+            $table->foreignId('reference_id')->constrained('references')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('presentation_id')->constrained('presentations')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('input_presentations');
+        Schema::dropIfExists('inputs');
     }
 };

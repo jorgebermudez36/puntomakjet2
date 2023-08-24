@@ -4,50 +4,32 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\reference;
+use App\Models\product;
+use App\Models\presentation;
 
 class input extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
+        "quantity",
         "reference_id",
         "product_id",
         "presentation_id",
-        "quantity",
-        "created_by",
-        "updated_by",
-        "deleted_by",
-
     ];
 
-    public function reference()
+    public function references()
     {
-        return $this->belongsTo(Reference::class);
+        return $this->belongsToMany(reference::class);
     }
-    public function product()
+    public function products()
     {
-        return $this->belongsTo(Product::class);
-    }
-
-    public function presentation()
-    {
-        return $this->belongsTo(Presentation::class);
+        return $this->belongsToMany(product::class);
     }
 
-    public function createdBy()
+    public function presentations()
     {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy()
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy()
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
+        return $this->belongsToMany(presentation::class);
     }
 }

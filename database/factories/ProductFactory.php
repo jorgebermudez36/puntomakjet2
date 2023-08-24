@@ -19,7 +19,6 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'reference_id' => reference::all()->random()->id,
             'name' => $this->faker->word,
         ];
     }

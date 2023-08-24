@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\input;
-use App\Models\supply;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Auth;
-
-
+use App\Models\reference;
+use App\Models\product;
+use App\Models\presentation;
 
 class InputController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -19,49 +21,48 @@ class InputController extends Controller
 
     public function index()
     {
-        $inputs = Input::with(['product', 'presentation', 'reference'])->paginate();
-        return Inertia::render('Inputs/Index', compact('inputs'));
+        $inputs = input::with('references', 'products', 'presentatios')->paginate(10);
+
+        return Inertia::render(
+            'Inputs/Index',
+            compact('inputs')
+        );
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        $references = \App\Models\Reference::all();
-        $presentations = \App\Models\Presentation::all();
-        $products = \App\Models\Product::all();
-        return Inertia::render('Inputs/Create', compact('presentations', 'references', 'products'));
+        $references = Reference::all();
+        $products = Product::all();
+        $presentations = Presentation::all();
+
+        return Inertia::render('Inputs/Create', compact('references', 'products', 'presentations'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         $request->validate([
             'reference_id' => 'required',
             'product_id' => 'required',
             'presentation_id' => 'required',
-            'quantity' => 'required|Integer',
-
+            'quantity' => 'required', 'int'
         ]);
-
-        $request['created_by'] = Auth::id();
 
         $input = new Input($request->input());
         $input->save();
 
-        // Retrieve the corresponding supply record based on reference_id, product_id, and presentation_id
-        $supply = Supply::where(['reference_id' => $input->reference_id, 'product_id' => $input->product_id, 'stock' => $input->quantity])->first();
-
-        /* if ($supply) {
-            // Update the stock in the supplies table
-            $newStock = $supply->calculateStock();
-            $supply->stock = $newStock;
-            $supply->save();
-        } else {
-            // Create a new supply record if it doesn't exist
-            $supply = new Supply(['reference_id' => $request->reference_id, 'product_id' => $request->product_id, 'stock' => $request->quantity]);
-            $supply->save();
-        } */
         return redirect('inputs');
     }
 
+
+    /**
+     * Display the specified resource.
+     */
     public function show(input $input)
     {
         //
@@ -72,11 +73,11 @@ class InputController extends Controller
      */
     public function edit(input $input)
     {
-        $references = \App\Models\Reference::all();
-        $products = \App\Models\Product::all();
-        $presentations = \App\Models\Presentation::all();
+        $reference = Reference::all();
+        $product = Product::all();
+        $presentation = Presentation::all();
 
-        return Inertia::render('Inputs/Edit', compact('input', 'references', 'products', 'presentations'));
+        return Inertia::render('Inputs/Edit', compact('reference', 'product', 'preentation'));
     }
 
     /**
@@ -87,15 +88,12 @@ class InputController extends Controller
         $request->validate([
             'reference_id' => 'required',
             'product_id' => 'required',
-            'presentation_id' => 'required',
-            'quantity' => 'required|Integer',
-
+            'presentation' => 'required',
+            'quantity' => 'required' | 'int',
         ]);
 
-        $request['updated_by'] = Auth::id();
-
         $input->update($request->all());
-        return redirect('inputs');
+        return redirect('Inputs');
     }
 
     /**
@@ -103,16 +101,7 @@ class InputController extends Controller
      */
     public function destroy(input $input)
     {
-        $input['deleted_by'] = Auth::id();
         $input->delete();
-        return redirect('inputs');
-    }
-
-    public function deleteInput(input $input, $id)
-    {
-        $input = Input::findOrFail($id);
-        // Delete the input record (soft deletion)
-        $input->delete();
-        return redirect('inputs');
+        return redirect('Inputs');
     }
 }

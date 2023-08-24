@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\input;
+
 
 class presentation extends Model
 {
@@ -13,8 +15,8 @@ class presentation extends Model
         "name",
     ];
 
-    public function input()
+    public function inputs()
     {
-        return $this->hasMany(input::class);
+        return $this->belongsToManyMany(input::class);
     }
 }

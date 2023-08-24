@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\product;
+use App\Models\input;
 
 
 class reference extends Model
@@ -16,8 +16,8 @@ class reference extends Model
     ];
 
     // One to many (inverse) relationships
-    public function products()
+    public function inputs()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Input::class);
     }
 }

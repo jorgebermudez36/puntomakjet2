@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\reference;
+use App\Models\input;
 
 class product extends Model
 {
@@ -13,4 +13,9 @@ class product extends Model
     protected $fillable = [
         "name",
     ];
+
+    public function inputs()
+    {
+        return $this->belongstoMany(input::class);
+    }
 }
